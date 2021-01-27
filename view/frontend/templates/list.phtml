@@ -1,0 +1,251 @@
+<?php
+
+
+/**
+ * @var Employee $block
+ */
+
+use Dtn\Knockout\Block\Employee;
+
+$employee = $block->getEmployee();
+?>
+
+<div id="block-knockouts" data-bind="scope:'knockouts'" class="block">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <script type="text/x-magento-init">
+    {
+        "#block-knockouts": {
+            "Magento_Ui/js/core/app": <?php echo $block->getJsLayout(); ?>
+
+        }
+    }
+
+    </script>
+</div>
+<?php
+
+/**
+ * @var \Dtn\Employee\Block\Employee $block
+ */
+?>
+
+<!--css table -->
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 30px;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
+    .post-id {
+        width: 2%
+    }
+
+    .post-name {
+        width: 30%
+    }
+
+    #from-edit {
+        display: none;
+    }
+</style>
+<button id="Createe" name="Createe">Add</button>
+
+<!--from add-->
+
+<div>
+    <form method="post" id="from" style="display: none">
+        <div class="mainForm">
+            <div class="leftForm">
+                <br>
+                <div class="control">
+                    <p>Department</p>
+                    <input type="text" name="department" placeholder="department" required><br>
+                </div>
+                <br>
+                <div class="control">
+                    <p>Email</p>
+                    <input type="email" name="email" placeholder="email" required><br>
+                </div>
+                <br>
+                <div class="control">
+                    <p>First Name</p>
+                    <input type="text" name="firstname" class="input-text" placeholder="firstname" required>
+                </div>
+                <br>
+            </div>
+            <div class="centerForm">
+                <div class="control">
+                    <p>Last Name</p>
+                    <input type="text" name="lastname" class="input-text" placeholder="lastname" required>
+                </div>
+                <br>
+                <div class="dob">
+                    <p>DOB</p>
+                    <input type="date" name="dob" class="input-text" placeholder="y/m/d" required>
+                </div>
+                <br>
+                <!--                <div class="working_years">-->
+                <!--                    <p>Working Date</p>-->
+                <!--                    <input type="number" name="working_years" class="input-text" placeholder="number working years"-->
+                <!--                           required>-->
+                <!--                </div>-->
+                <br>
+            </div>
+            <div class="rightForm">
+                <div class="salary">
+                    <p>Salary</p>
+                    <input type="number" name="salary" class="input-text" placeholder="salary" required>
+                </div>
+                <br>
+                <div class="salary">
+                    <p>Note</p>
+                    <input type="text" name="note" class="input-text" placeholder="note" required>
+                </div>
+                <br>
+                <div class="btn">
+                    <input type="submit" value="Add" class="action submit primary">
+                    <input type="reset" value="Reset" class="action primary">
+                    <input type="submit" id="Exit" name="Close" value="Exit" class="action close primary">
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<!--from edit-->
+
+<div id="from-edit" class="modal fade">
+    <form>
+        <table>
+            <tr>
+                <td>Department</td>
+                <td>
+                    <label>
+                        <input type="text" name="department" value="" id="">
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>
+                    <label>
+                        <input type="email" name="email" value="" id="">
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>FirstName</td>
+                <td>
+                    <label>
+                        <input type="text" name="firstname" value="" id="">
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>LastName</td>
+                <td>
+                    <label>
+                        <input type="text" name="lastname" value="" id="">
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>Salary</td>
+                <td>
+                    <label>
+                        <input type="number" name="salary" value="" id="">
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>Dob</td>
+                <td>
+                    <label>
+                        <input type="date" name="dob" value="" id="">
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>Note</td>
+                <td>
+                    <label>
+                        <input type="text" name="note" value="" id="">
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="submit" class="">
+                        Edit
+                    </button>
+                    <button type="reset">
+                        Reset
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<!--show table employee-->
+
+<table>
+    <thead>
+    <tr>
+        <th class="id">Id</th>
+        <th class="department">Department</th>
+        <th class="email">Email</th>
+        <th class="firstname">First_name</th>
+        <th class="lastname">Last_name</th>
+        <!--        <th class="workingyears">Working years</th>-->
+        <th class="dob">Date of Birth</th>
+        <th class="salary">Salary</th>
+        <th class="note">Note</th>
+        <th class="action">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($employee as $key => $post): ?>
+        </tr>
+        <td><?php echo $post->getData('employee_id') ?></td>
+        <td>
+            <?php echo $post->getData('department') ?>
+        </td>
+        <td><?php echo $post->getData('email') ?></td>
+        <td><?php echo $post->getData('firstname') ?></td>
+        <td><?php echo $post->getData('lastname') ?></td>
+        <!--            <td>--><?php //echo $post->getData('workingyears') ?><!--</td>-->
+        <td><?php echo $post->getData('dob') ?></td>
+        <td><?php echo $post->getData('salary') ?></td>
+        <td><?php echo $post->getData('note') ?></td>
+        <td>
+            <a class="action primary Delete"
+               data-pid="<?php echo $post->getData('employee_id') ?>"
+            >
+                Delete
+            </a>
+            <a class="action primary Update">
+                Update
+            </a>
+        </td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
+</body>
+</html>
+
